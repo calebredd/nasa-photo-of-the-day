@@ -4,12 +4,16 @@ import axios from "axios";
 import NasaCard from "./Components/NasaCard";
 
 function App() {
+  const today = new Date();
+  const day = today.getFullYear() + '-' + ("0"+(today.getMonth() + 1)).slice(-2) + '-' + ("0"+today.getDate()).slice(-2);
   const [url, setUrl] = useState([]);
   const [title, setTitle] = useState([]);
   const [explanation, setExplanation] = useState([]);
+  const [date, setDate] = useState([{day}]);
+
   useEffect(() => {
     axios
-      // .get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")
+      // .get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date={date}")
       .get("db.json")
       .then(api => {
         console.log(api.data);
