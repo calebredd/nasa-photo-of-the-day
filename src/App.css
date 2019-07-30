@@ -31,3 +31,10 @@
     transform: rotate(360deg);
   }
 }
+.picture-card img{
+  max-width:50%;
+}
+.nasa-card{
+  width:75vw;
+  margin:0 auto;
+}
