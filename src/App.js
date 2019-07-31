@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import axios from "axios";
 import NasaCard from "./Components/NasaCard";
+import {Grid, Form, Input, TextArea, Button, Select} from "semantic-ui-react";
+
+import "./App.css";
+import "semantic-ui/dist/semantic.min.css";
 
 function App() {
   const today = new Date();
