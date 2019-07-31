@@ -17,38 +17,40 @@ function App() {
   const [date, setDate] = useState(day);
   const randomDate = () => {
     return (
-      "2018" +
+      today.getFullYear()-(Math.floor(Math.random() * Math.floor(10))) +
       "-" +
       ("0" + (Math.floor(Math.random() * Math.floor(12)) + 1)).slice(-2) +
       "-" +
       ("0" + Math.floor(Math.random() * Math.floor(28))).slice(-2)
     );
   };
-  console.log({date});
+  // console.log({date});
   useEffect(() => {
     axios
       .get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date="+date)
       // .get("db.json")
       .then(api => {
-        console.log(api.data);
+        // console.log(api.data);
         setTitle(api.data.title);
         setExplanation(api.data.explanation);
-        return setUrl(api.data.url);
+        setUrl(api.data.url);
+        if (api.data.url.slice(-3) !== "jpg") return setDate(randomDate());
+        return;
       })
       .catch(err => console.log(err));
-  }, [date]);
-  return (
-    <div className="App">
+    }, [date]);
+    return (
+      <div className="App">
       <div className="displaying-date">Current date being displayed: {date}</div>
       <button
         className="random-btn"
         onClick={() => {
           return setDate(randomDate());
         }}
-      >
+        >
         Random Picture
       </button>
-      <NasaCard title={title} url={url} explanation={explanation} />
+      <NasaCard title={title} url={url} explanation={explanation} setDate={setDate} randomDate={randomDate}  />
     </div>
   );
 }
