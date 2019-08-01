@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background:maroon;
+  padding:20px;
 }
 
 .App-logo {
@@ -31,10 +33,18 @@
     transform: rotate(360deg);
   }
 }
-.picture-card img{
-  max-width:50%;
+img{
+  width:80%;
 }
 .nasa-card{
   width:75vw;
   margin:0 auto;
+}
+.display-card{
+padding:10px 0px;
+}
+.display-card, .main{
+  width:75%;
+  margin:20px auto;
+  background:white;
 }
