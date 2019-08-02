@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import NasaCard from "./Components/NasaCard";
-import {
-  Container,
-  Button,
-  Card,
-  Image,
-  Icon
-} from "semantic-ui-react";
+import NasaCard from "./Components/NasaCard";
+import DisplayCard from "./Components/DisplayCard";
+import { Container } from "semantic-ui-react";
 
 import "./App.css";
 //import "semantic-ui-react/semantic.min.css";
@@ -32,7 +27,7 @@ function App() {
       "-" +
       ("0" + (Math.floor(Math.random() * Math.floor(12)) + 1)).slice(-2) +
       "-" +
-      ("0" + (Math.floor(Math.random() * Math.floor(28))+1)).slice(-2)
+      ("0" + (Math.floor(Math.random() * Math.floor(28)) + 1)).slice(-2)
     );
   };
   // console.log({date});
@@ -53,42 +48,15 @@ function App() {
   }, [date]);
   return (
     <Container className="App" fluid={true}>
-      <Card className="display-card" centered={true}>
-        <Card.Header className="displaying-date">
-          Current date being displayed: {date}
-        </Card.Header>
-        <Card.Content>
-          <Button
-          primary inverted
-            // className="random-btn"
-            onClick={() => {
-              return setDate(randomDate());
-            }}
-          >
-            {" "}
-            Random Picture
-          </Button>
-        </Card.Content>
-      </Card>
+      <DisplayCard date={date} setDate={setDate} randomDate={randomDate} />
 
-      {/*    <NasaCard title={title} url={url} explanation={explanation} setDate={setDate} randomDate={randomDate}  /> */}
-
-      <Container className="main" centered={true}>
-        <Card fluid>
-          <Card.Content>
-          <Card.Header>{title}</Card.Header>
-          <Card.Meta>
-            <span className="date">{date}</span>
-          </Card.Meta>
-        <Image src={url} wrapped ui={false} />
-          <Card.Description>{explanation}</Card.Description>
-        </Card.Content>
-        <Card.Content extra textAlign="left">
-          <Icon disabled name='copyright' />
-          {copyright}
-        </Card.Content>
-      </Card>
-      </Container>
+      <NasaCard
+        title={title}
+        url={url}
+        explanation={explanation}
+        copyright={copyright}
+        date={date}
+      />
     </Container>
   );
 }
